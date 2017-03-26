@@ -144,16 +144,14 @@ int bankers(char* f){
                     break;
                 }
             }
-
-
         }
     }
 
     if(compProcesses==nProc){//if equal then we completed all processes
-        printf("Safe state.");
+        printf("Safe state.\n");
     }
     else{
-        printf("Unsafe state.");
+        printf("Unsafe state.\n");
     }
 
     return 0;
