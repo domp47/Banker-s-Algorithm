@@ -1,41 +1,31 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
-//
-// Created by dom on 24/03/17.
-//
+/*
+ * Banker's Algorithm using given state files
+ * Domenic Perriccioli
+ * v1.0 - 03/24/2017
+ * C99 Standard
+ */
 
 
-int bankers(char*); //method to run the Banker's Algorithm
+void bankers(char*); //method to run the Banker's Algorithm
 
-int main(){
-    char S1[22] = "InputFiles/state1.txt"; //first file to read
-    char S2[22] = "InputFiles/state2.txt"; //second file
-    char S3[22] = "InputFiles/state3.txt"; //third file
-    char S4[22] = "InputFiles/state4.txt"; //fourth file
-    char S5[22] = "InputFiles/state5.txt"; //fifth file
+int main(int argc,char* argv[]){
 
-    int input;  //int for user input
+    char* file;
 
-    printf("Enter 1, 2, 3, 4, or 5 to choose given state file:");
-    scanf("%d",&input); //read user input
-
-    if(input==1)
-        return bankers(S1);
-    if(input==2)
-        return bankers(S2);
-    if(input==3)
-        return bankers(S3);
-    if(input==4)
-        return bankers(S4);
-    if(input==5)
-        return bankers(S5);
-    else{
-        printf("Error - Incorrect input.");
-        return 2;
+    if(argc > 1){
+        file = argv[1];
+    }else{
+        return 0;
     }
+
+    bankers(file);
+
+    return 0;
 }
-int bankers(char* f){
+void bankers(char* f){
     int nProc;  //number of processes
     int nRes;   //number of resources
 
@@ -44,8 +34,7 @@ int bankers(char* f){
     char buf[100];      //char array for file contents
 
     if(!State){//if no file end
-        printf("Error - File not found.");
-        return 1;
+        printf("Error - File not found.\n");
     }
 
     fgets(buf,100,State);   //get first line
@@ -153,6 +142,4 @@ int bankers(char* f){
     else{
         printf("Unsafe state.\n");
     }
-
-    return 0;
 }
